@@ -1,13 +1,30 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+public class Main {
+    public static void main(String[] args) {
+        // Creating an array of Animal references containing objects from our classes using different constructors
+        Animal[] zoo = new Animal[6];
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
+        zoo[0] = new Mammal("Rex", 4, 15.5, "Black");
+        zoo[1] = new Dog("Buddy", 2, 8.0, "Golden", "Golden Retriever");
+        zoo[2] = new Bird("Sky"); // using partial parameters constructor
+        zoo[3] = new Pigeon("Percy", 1, 0.4, "Grey/Green", "City Pigeon");
+        zoo[4] = new Fish(); // using default constructor
+        zoo[5] = new Blowfish("Puffy", 3, 1.2, "Spiky", true);
+
+        System.out.println("=== ANIMAL ACTIONS & METHODS ===");
+        for (int i = 0; i < zoo.length; i++) {
+            System.out.println("\n--- Index " + i + " ---");
+            System.out.println(zoo[i].toString());
+            zoo[i].eat();
+            zoo[i].getVoice();
+
+            // Calling class-specific methods using downcasting
+            if (zoo[i] instanceof Dog) {
+                ((Dog) zoo[i]).fetch();
+            } else if (zoo[i] instanceof Pigeon) {
+                ((Pigeon) zoo[i]).deliverLetter();
+            } else if (zoo[i] instanceof Blowfish) {
+                ((Blowfish) zoo[i]).inflate();
+            }
+        }
+    }
 }
